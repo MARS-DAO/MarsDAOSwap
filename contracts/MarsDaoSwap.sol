@@ -19,11 +19,9 @@ contract MarsDaoSwap is Ownable{
         newToken=IERC20(_newToken);
     }
 
-    function swap(uint256 amount) external{
-        
-        require(oldToken.allowance(msg.sender, address(this)) >=amount,
-            "Increase the allowance first,call the approve method"
-        );
+    function swap() external{
+        uint256 amount=oldToken.balanceOf(msg.sender);
+        require(amount>0,"you do not have tokens for swap");
         oldToken.safeTransferFrom(address(msg.sender),burnAddress,amount);
         newToken.safeTransfer(address(msg.sender),amount);
     }
