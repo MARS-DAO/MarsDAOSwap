@@ -26,7 +26,7 @@ contract MarsDaoSwap is Ownable{
         newToken.safeTransfer(address(msg.sender),amount);
     }
 
-    function inCaseTokensGetStuck(
+    function getTokens(
         address _token,
         uint256 _amount,
         address _to
